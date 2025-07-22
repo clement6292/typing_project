@@ -81,6 +81,24 @@
     "cancel": "Annuler",
     "delete_all": "Supprimer tout"
   },
+  "footer": {
+    "about_title": "À propos de TypingTest",
+    "about_description": "Améliorez vos compétences de frappe avec notre test interactif. Entraînez-vous avec des textes en plusieurs langues et suivez vos progrès au fil du temps.",
+    "features_title": "Fonctionnalités",
+    "feature_multilingual": "Support multilingue (FR/EN)",
+    "feature_realtime": "Retour en temps réel",
+    "feature_history": "Historique des performances",
+    "feature_statistics": "Statistiques détaillées",
+    "stats_title": "Infos Test",
+    "languages_supported": "2 langues supportées",
+    "test_duration": "Tests de 60 secondes",
+    "performance_tracking": "Suivi complet des performances",
+    "copyright": "TypingTest - Le Meilleur codeur du monde😒",
+    "made_with": "Créé avec",
+    "styled_with": "Stylé avec",
+    "powered_by": "Propulsé par",
+    "motivation_message": "\"L'expert dans n'importe quel domaine était autrefois un débutant. Continuez à pratiquer !\" 💪"
+  },
   "api": {
     "connection_error": "Erreur de connexion. Impossible de charger un nouveau texte.",
     "server_error": "Impossible de charger le texte depuis le serveur. Veuillez réessayer.",

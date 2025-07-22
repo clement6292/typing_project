@@ -77,6 +77,24 @@
     "cancel": "Cancel",
     "delete_all": "Delete All"
   },
+  "footer": {
+    "about_title": "About TypingTest",
+    "about_description": "Improve your typing skills with our interactive typing test. Practice with texts in multiple languages and track your progress over time.",
+    "features_title": "Features",
+    "feature_multilingual": "Multilingual support (EN/FR)",
+    "feature_realtime": "Real-time feedback",
+    "feature_history": "Performance history",
+    "feature_statistics": "Detailed statistics",
+    "stats_title": "Test Info",
+    "languages_supported": "2 languages supported",
+    "test_duration": "60-second tests",
+    "performance_tracking": "Complete performance tracking",
+    "copyright": "TypingTest - The best coder in the world 😒",
+    "made_with": "Made with",
+    "styled_with": "Styled with",
+    "powered_by": "Powered by",
+    "motivation_message": "\"The expert in anything was once a beginner. Keep practicing!\" 💪"
+  },
   "api": {
     "connection_error": "Connection error. Unable to load new text.",
     "server_error": "Unable to load text from server. Please try again.",
