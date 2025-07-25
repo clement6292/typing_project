@@ -1,5 +1,6 @@
 {
   "nav": {
+    "dashboard": "Accueil",
     "typing_test": "Test de Frappe",
     "history": "Historique",
     "language": "Langue"
@@ -72,7 +73,8 @@
     "words_typed": "mots",
     "precision": "précision",
     "text_excerpt": "Extrait du texte :",
-    "progress": "Progression"
+    "progress": "Progression",
+    "replay_test": "Rejouer ce test"
   },
   "modal": {
     "confirm_delete": "Êtes-vous sûr de vouloir supprimer tout l'historique ?",
@@ -103,5 +105,15 @@
     "connection_error": "Erreur de connexion. Impossible de charger un nouveau texte.",
     "server_error": "Impossible de charger le texte depuis le serveur. Veuillez réessayer.",
     "fallback_text": "Portez ce vieux whisky au juge blond qui fume sur son île intérieure, dans un beau palais d'été. Cette phrase contient toutes les lettres de l'alphabet français et est couramment utilisée pour la pratique de la dactylographie."
+  },
+  "dashboard": {
+    "title": "Bienvenue sur TypingMaster !",
+    "total_tests": "Tests réalisés",
+    "average_wpm": "Vitesse moyenne",
+    "average_accuracy": "Précision moyenne",
+    "average_errors": "Erreurs moyennes",
+    "start_test": "Nouveau test",
+    "see_history": "Voir l'historique",
+    "motivation": "Continue à t'entraîner pour battre ton record !"
   }
 }

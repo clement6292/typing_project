@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function useChrono(isRunning, onTimeout) {
+export default function useChrono(isRunning, onTimeout, duration = 60) {
   const [elapsed, setElapsed] = useState(0);
   const intervalRef = useRef(null);
 
@@ -16,10 +16,10 @@ export default function useChrono(isRunning, onTimeout) {
   }, [isRunning]);
 
   useEffect(() => {
-    if (elapsed >= 60 && isRunning) {
+    if (elapsed >= duration && isRunning) {
       onTimeout && onTimeout();
     }
-  }, [elapsed, isRunning, onTimeout]);
+  }, [elapsed, isRunning, onTimeout, duration]);
 
   const reset = () => setElapsed(0);
 

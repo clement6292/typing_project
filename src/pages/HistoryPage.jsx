@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ScoreBoard from '../components/ScoreBoard';
 import Modal from '../components/Modal';
 import { useScores } from '../contexts/ScoresContext';
@@ -10,6 +10,12 @@ function HistoryPage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { t } = useLanguage();
   const stats = getStatistics();
+  const navigate = useNavigate();
+
+  // Fonction pour rejouer un test
+  const handleReplayTest = (score) => {
+    navigate('/test', { state: { replayText: score.text, replayLanguage: score.language } });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
@@ -78,7 +84,7 @@ function HistoryPage() {
 
         {/* Tableau des scores */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200">
-          <ScoreBoard scores={scores} />
+          <ScoreBoard scores={scores} onReplay={handleReplayTest} />
         </div>
 
         {/* Message si pas de scores */}

@@ -2,18 +2,28 @@ import React, { useState, useRef, useEffect } from "react";
 import useChrono from "../hooks/useChrono";
 import { useLanguage } from "../hooks/useLanguage";
 
-function KeyboardTest({ onScoreAdd }) {
-  const [sampleText, setSampleText] = useState("");
+function KeyboardTest({ onScoreAdd, initialText, initialLanguage }) {
+  const [sampleText, setSampleText] = useState(initialText || "");
   const [input, setInput] = useState("");
   const [started, setStarted] = useState(false);
   const [finished, setFinished] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialText);
   const [finalStats, setFinalStats] = useState(null); // Sauvegarder les stats finales
+  const [duration, setDuration] = useState(60); // Durée sélectionnée par l'utilisateur
+  const [replayMode, setReplayMode] = useState(!!initialText);
   const inputRef = useRef(null);
   const textContainerRef = useRef(null);
 
   // Hook pour les traductions et la langue
-  const { t, currentLanguage, toggleLanguage } = useLanguage();
+  const { t, currentLanguage, toggleLanguage, setLanguage } = useLanguage();
+
+  // Si initialLanguage est fourni, force la langue
+  useEffect(() => {
+    if (initialLanguage) {
+      setLanguage(initialLanguage);
+    }
+    // eslint-disable-next-line
+  }, [initialLanguage]);
 
   // Chrono hook
   const { elapsed, reset } = useChrono(started && !finished, () => {
@@ -36,7 +46,7 @@ function KeyboardTest({ onScoreAdd }) {
     
     // Envoyer le score au Context
     onScoreAdd && onScoreAdd(finalStats);
-  });
+  }, duration);
 
   // Fonction pour charger un texte aléatoire depuis l'API
   const fetchRandomText = async () => {
@@ -45,6 +55,7 @@ function KeyboardTest({ onScoreAdd }) {
     setStarted(false);
     setFinished(false);
     setFinalStats(null);
+    setReplayMode(false);
 
     try {
       let text = "";
@@ -56,7 +67,7 @@ function KeyboardTest({ onScoreAdd }) {
           
           "L'apprentissage de la programmation informatique est devenu une compétence absolument absolument essentielle , Je vais créer des textes français BEAUCOUP plus longs pour garantir qu'aucun utilisateur ne puisse finir avant 60 secondes, même les plus rapides le ne et techmologiquo d'aujourd'huinde moderne et technologique d'aujourd'hui. Les déent quotidiennvmeeloppeurs et les ns iinovantengénieurs logicieintlracsifs et créent qumes cooplextidiennement dent considérablemes applications innovantes, des sites web interactifs et des systèmes complexes qui extraordinaire facilitent con êtressidérablement notre vie efficqcement auotidienne. Le code source représente une forme de lextrêmement angage universel extraordinaire quiharmonieusement  permet auxartistiqu  eêtres humains de comue rigouremsuniquer efficacement avec les machines et de leur donner des instructioes remarquablns extrêmement précises. La programmation combine harmonieusemen,tC++  crbien d'autresivité artistique et logiquehes mét odologiqumathématique rigoureuse pour rés performants et robustesoudre des problèmes complexemondiale s et créer des solutions innovantes remaiés et expérrmentquables. Les langages de programmation comme Python, JavaScript, Java, C++ e extrêmementt bien es dt sécuri'ésautres offrent différentes appro intensifsches méthodologiques e accpssibles ontocunsidérablemer développer des logiciels performants et robustes. L spécialisées'industrie oratitn inteenchnolaleogique mondiale recherche constamment des talents qualifiés et expérgrandement imentés capables de concevoir, développer et maintenir des systets logiciels open source. Les frameworks èm leesbib iothèques midernes accélèrent sinniffoatrvmment ae processut de développementi L'architecture logicielle devient de plus en plus sophistiquée avec l'émergence des microservices et du cloud computing. Les méthodologies agiles transforment la façon dont les équipes de développement organisent leur travail collaboratif.ques extrêmement robustes et sécurisés. Les bootcamps de programmation intensifs et les cours en ligne accessibles ont considérablement démocratisé l'accès à ces connaissances techniques spécialisées. La collaboration internationale entre développeurs à travers des plateformes comme GitHub favorise grandement le partage de connaissances et l'amélioration continue des projets logiciels open source. Les frameworks et les bibliothèques modernes accélèrent significativement le processus de développement. L'architecture logicielle devient de plus en plus sophistiquée avec l'émergence des microservices et du cloud computing. Les méthodologies agiles transforment la façon dont les équipes de développement organisent leur travail collaboratif.",
           
-          "La protection de l'environnement et le développement durable sont devenus des enjeux absolument absolume et urgentsnt cruciaux et urgents pour l'e fragilavenir de notre plaimatnque draète fragile. Le changement , Je vais créer des textes français BEAUCOUP plus longs pour garantir qu'aucun utilisateur ne puisse finir avant 60 secondes, même les plus rapides climatique dramatique, caines untessivé principalement ps massivear les activités humaines intense gravemintves et les émissions massives l dédicate gaz à effet de serre, menace gravement l'équilibre photovoltaïque écologiqe terrestre et maritimu,e mondial délicat. Les énergies renouvel extrêmementables comme l'énergie solaire photoiles polluants et épuvsaboltaïque, éolienne terrestre e mondialet maritime, et hydraulique offrcolo saux alternatives extrêmement modernps erometteuses aux combustes innovantibles fossiles poll conscientuants et épuisablsignificativement es. La transe noblition énergétique mondiale néts quocidienessite des investissements colossaux dnaturel ans lesre d astiquemintnfrastructures modernes et les technolo systématiquementgies vertes innovantes. C écologiqueshaque indi méticuleusementvidu conscient peut contribuer significativemele et réfnéchit à cette causese  multinationalnoble en adoptant des comftndementals quotidiens plus respectueux de l'environnement naturdurables el : réduire draconsidérabsemtnt leiquement sa consomma négativetion d'énergie, privilégier systématiquement les transporabsolument ts en commun écologiques, rec efficacementycler méticuleusement ses déchets et consommer majeurs de manière responsable et réfléchie. Les entreprises multinationales ont également un rôle fondamentalmon ialà de jouer eantivement c développant des produits éco-res alarmantp La biodiversité mondiale subit des pressions considérables qui nécessitent des mesures de protection urgentes. L'économie circulaire propose des modèles alternatifs durables pour réduire le gaspillage des ressources naturelles précieuses.onsables durables et en réduisant considérablement leur empreinte carbone négative. L'éducation environnementale dès le plus jeune âge est absolument essentielle pour sensibiliser efficacement les futures générations aux défis écologiques majeurs. Les accords internationaux comme l'Accord de Paris sur le climat témoignent de la volonté collective mondiale de lutter activement contre le réchauffement climatique alarmant. La biodiversité mondiale subit des pressions considérables qui nécessitent des mesures de protection urgentes. L'économie circulaire propose des modèles alternatifs durables pour réduire le gaspillage des ressources naturelles précieuses.",
+          "La protection de l'environnement et le développement durable sont devenus des enjeux absolument absolume et urgentsnt cruciaux et urgents pour l'e fragilavenir de notre plaimatnque draète fragile. Le changement , Je vais créer des textes français BEAUCOUP plus longs pour garantir qu'aucun utilisateur ne puisse finir avant 60 secondes, même les plus rapides climatique dramatique, caines untessivé principalement ps massivear les activités humaines intense gravemintves et les émissions massives l dédicate gaz à effet de serre, menace gravement l'équilibre photovoltaïque écologiqe terrestre et maritimu,e mondial délicat. Les énergies renouvel extrêmementables comme l'énergie solaire photoiles polluants et épuvsaboltaïque, éolienne terrestre e mondialet maritime, et hydraulique offrcolo saux alternatives extrêmement modernps erometteuses aux combustes innovantibles fossiles poll conscientuants et épuisablsignificativement es. La transe noblition énergétique mondiale néts quocidienessite des investissements colossaux dnaturel ans lesre d astiquemintnfrastructures modernes et les technolo systématiquementgies vertes innovantes. C écologiqueshaque indi méticuleusementvidu conscient pe peut contribuer significativemele et réfnéchit à cette causese  multinationalnoble en adoptant des comftndementals quotidiens plus respectueux de l'environnement naturdurables el : réduire draconsidérabsemtnt leiquement sa consomma négativetion d'énergie, privilégier systématiquement les transporabsolument ts en commun écologiques, rec efficacementycler méticuleusement ses déchets et consommer majeurs de manière responsable et réfléchie. Les entreprises multinationales ont également un rôle fondamentalmon ialà de jouer eantivement c développant des produits éco-res alarmantp La biodiversité mondiale subit des pressions considérables qui nécessitent des mesures de protection urgentes. L'économie circulaire propose des modèles alternatifs durables pour réduire le gaspillage des ressources naturelles précieuses.onsables durables et en réduisant considérablement leur empreinte carbone négative. L'éducation environnementale dès le plus jeune âge est absolument essentielle pour sensibiliser efficacement les futures générations aux défis écologiques majeurs. Les accords internationaux comme l'Accord de Paris sur le climat témoignent de la volonté collective mondiale de lutter activement contre le réchauffement climatique alarmant. La biodiversité mondiale subit des pressions considérables qui nécessitent des mesures de protection urgentes. L'économie circulaire propose des modèles alternatifs durables pour réduire le gaspillage des ressources naturelles précieuses.",
           
           "La lecture demeure incontestablement incontestablement l'une des activités intellectuelles les p, enrichisses et épanouissantantes, format dans notre société modernerices et épanouissantes quteni magiquem soient dans notre société modes abrolumentne. Les livres nous transportent magiquement , Je vais créer des textes français BEAUCOUP plus longs pour garantir qu'aucun utilisateur ne puisse finir avant 60 secondes, même les plus rapides dans des univers imagves réiélatricnaires absolume complexent fascinants ete quotidienn mentnous permettente universell de découvfidèrement lir de nouvelextraorlinaire des perspectives révélatrices sur lnes profoed monde complexe qui nous ques marenanttoure quotidiee soigneusemnntnement. La littérature universelle reflète fidèlement la stimulante div développeeretarqéab ementxtraordinaire des ccréatricutst expériences humaines profondes et de approfondies époquesans captiv htistoriques marquantes. Chaque page soes et authentiquigneusement tournée représes attachantnte une nouvelle aes bouleversantventure inteis phllosophiquelectuelle stimulante qui dévelopspécialisés pe remarquablement notre imagination créaties et précreusice et notre capa extrêmementcité ds et paesionnants réflexioie sublnm critique approfonddélicatement ie. Les romaineffable ns captivants nous font vivre envoûtante des émot choisisions intenses et authentiques accàssibles e travers les personnages attachchaleureuses ants et leurs habsolument istoires bouleversantes. Lactive es essais philosophiques et les ouvrages documenta universelleires spécialisés fulgurant nous apporte omniprésentnt des connaissar tnaditionnelces appre fidèlemontfond nombreuxies et s passionnéprécieuses cient partisuluèremr des sujets extrêmement variés et passionnants. La poésie sublime nous sensibiliil procure généreusement. Les clubs de lecture créent des communautés enrschissantes autour de ea passion daétagée des mlts. L'édition iontemporaine se diversifie pocr répondae aux attentts variées des lecteurs modernesement à la beauté ineffable du langage et à la musicalité envoûtante des mots choisis. Les bibliothèques publiques accessibles et les librairies indépendantes chaleureuses jouent un rôle absolument crucial dans la promotion active de la lecture et l'accès démocratique à la culture universelle. Malgré l'essor fulgurant du numérique omniprésent, le livre papier traditionnel conserve fidèlement ses nombreux adeptes passionnés qui apprécient particulièrement le contact physique avec l'objet livre et l'expérience sensorielle unique qu'il procure généreusement. Les clubs de lecture créent des communautés enrichissantes autour de la passion partagée des mots. L'édition contemporaine se diversifie pour répondre aux attentes variées des lecteurs modernes.",
           
@@ -170,9 +181,15 @@ function KeyboardTest({ onScoreAdd }) {
     setTimeout(() => inputRef.current && inputRef.current.focus(), 0);
   };
 
+  // useEffect pour charger le texte si pas en mode replay
   useEffect(() => {
-    fetchRandomText();
-  }, [currentLanguage]); // Recharger le texte quand la langue change
+    if (!replayMode) {
+      fetchRandomText();
+    } else {
+      setLoading(false);
+    }
+    // eslint-disable-next-line
+  }, [currentLanguage]);
 
   useEffect(() => {
     if (textContainerRef.current) {
@@ -198,7 +215,13 @@ function KeyboardTest({ onScoreAdd }) {
     setStarted(false);
     setFinished(false);
     reset();
-    fetchRandomText();
+    if (replayMode) {
+      // Si on était en mode replay, repasser en mode normal
+      setReplayMode(false);
+      fetchRandomText();
+    } else {
+      fetchRandomText();
+    }
   };
 
   const getErrors = () => {
@@ -241,9 +264,24 @@ function KeyboardTest({ onScoreAdd }) {
         <h2 className="text-4xl font-extrabold mb-8 text-center text-blue-800 tracking-tight drop-shadow">
           {t('typing.title')}
         </h2>
+        {/* Sélecteur de durée */}
+        <div className="flex justify-center mb-6">
+          <label className="mr-2 font-medium text-blue-800" htmlFor="duration-select">{t('typing.time') || 'Temps'}:</label>
+          <select
+            id="duration-select"
+            value={duration}
+            onChange={e => setDuration(Number(e.target.value))}
+            className="px-3 py-1 rounded border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-200 bg-white text-blue-800 font-semibold"
+            disabled={started && !finished}
+          >
+            <option value={30}>30s</option>
+            <option value={60}>60s</option>
+            <option value={120}>120s</option>
+          </select>
+        </div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
           <span className="text-gray-700 text-base bg-white/80 px-4 py-2 rounded shadow">
-            ⏱️ <span className="font-bold">{elapsed}s</span>
+            ⏱️ <span className="font-bold">{elapsed}s</span> / <span className="font-bold">{duration}s</span>
           </span>
           <span className="text-gray-700 text-base bg-white/80 px-4 py-2 rounded shadow">
             {t('typing.errors')} : <span className="font-bold text-red-600">{getErrors()}</span>
@@ -254,7 +292,7 @@ function KeyboardTest({ onScoreAdd }) {
           <button
             onClick={toggleLanguage}
             className="bg-purple-100 text-purple-800 px-4 py-2 rounded shadow hover:bg-purple-200 transition font-medium"
-            disabled={loading}
+            disabled={loading || replayMode}
           >
             🌐 {t('typing.language_switch')}
           </button>

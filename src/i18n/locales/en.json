@@ -1,5 +1,6 @@
 {
   "nav": {
+    "dashboard": "Home",
     "typing_test": "Typing Test",
     "history": "History",
     "language": "Language"
@@ -68,7 +69,8 @@
     "words_typed": "words",
     "precision": "precision",
     "text_excerpt": "Text excerpt:",
-    "progress": "Progress"
+    "progress": "Progress",
+    "replay_test": "Replay this test"
   },
   "modal": {
     "confirm_delete": "Are you sure you want to delete all history?",
@@ -99,5 +101,15 @@
     "connection_error": "Connection error. Unable to load new text.",
     "server_error": "Unable to load text from server. Please try again.",
     "fallback_text": "The quick brown fox jumps over the lazy dog. This pangram contains every letter of the alphabet and is commonly used for typing practice and font testing."
+  },
+  "dashboard": {
+    "title": "Welcome to TypingMaster!",
+    "total_tests": "Tests completed",
+    "average_wpm": "Average speed",
+    "average_accuracy": "Average accuracy",
+    "average_errors": "Average errors",
+    "start_test": "New test",
+    "see_history": "See history",
+    "motivation": "Keep practicing to beat your record!"
   }
 }

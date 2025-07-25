@@ -38,15 +38,25 @@ function Header() {
               <Link
                 to="/"
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center space-x-2 ${
-                  isActive('/')
+                  isActive('/') 
                     ? 'bg-white text-blue-700 shadow-lg transform scale-105'
                     : 'text-white hover:bg-white/20 hover:backdrop-blur-sm'
                 }`}
               >
-                <span className="text-lg">🎯</span>
-                <span>{t('nav.typing_test')}</span>
+                <span className="text-lg">🏠</span>
+                <span>{t('nav.dashboard') || "Accueil"}</span>
               </Link>
-              
+              <Link
+                to="/test"
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center space-x-2 ${
+                  isActive('/test')
+                    ? 'bg-white text-blue-700 shadow-lg transform scale-105'
+                    : 'text-white hover:bg-white/20 hover:backdrop-blur-sm'
+                }`}
+              >
+                <span className="text-lg">⌨️</span>
+                <span>{t('nav.typing_test') || "Test de frappe"}</span>
+              </Link>
               <Link
                 to="/history"
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 flex items-center space-x-2 ${
@@ -56,7 +66,7 @@ function Header() {
                 }`}
               >
                 <span className="text-lg">📊</span>
-                <span>{t('nav.history')}</span>
+                <span>{t('nav.history') || "Historique"}</span>
               </Link>
             </nav>
 

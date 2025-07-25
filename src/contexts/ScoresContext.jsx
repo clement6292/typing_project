@@ -16,23 +16,60 @@ export const useScores = () => {
 export const ScoresProvider = ({ children }) => {
   const [scores, setScores] = useState([]);
 
-  // Charger les scores depuis localStorage au démarrage
+  // Charger les scores depuis localStorage au démarrage (robuste et migration)
   useEffect(() => {
     try {
-      const savedScores = localStorage.getItem('typingTestScores');
-      if (savedScores) {
-        const parsedScores = JSON.parse(savedScores);
-        setScores(parsedScores);
+      const saved = localStorage.getItem('typingTestScores');
+      if (saved) {
+        let parsed;
+        try {
+          parsed = JSON.parse(saved);
+        } catch {
+          setScores([]);
+          localStorage.removeItem('typingTestScores');
+          return;
+        }
+        // Si c'est un tableau (ancienne version)
+        if (Array.isArray(parsed)) {
+          setScores(parsed);
+          // On migre vers la nouvelle structure
+          localStorage.setItem('typingTestScores', JSON.stringify({ scores: parsed, savedAt: Date.now() }));
+        }
+        // Si c'est un objet avec scores et savedAt
+        else if (parsed.scores && parsed.savedAt) {
+          if (Date.now() - parsed.savedAt < 24 * 60 * 60 * 1000) {
+            setScores(parsed.scores);
+          } else {
+            setScores([]);
+            localStorage.removeItem('typingTestScores');
+          }
+        }
+        // Si c'est un objet avec juste scores (pas de savedAt)
+        else if (parsed.scores) {
+          setScores(parsed.scores);
+          localStorage.setItem('typingTestScores', JSON.stringify({ scores: parsed.scores, savedAt: Date.now() }));
+        }
+        // Cas inattendu
+        else {
+          setScores([]);
+          localStorage.removeItem('typingTestScores');
+        }
       }
     } catch (error) {
       console.error('Erreur lors du chargement des scores:', error);
+      setScores([]);
+      localStorage.removeItem('typingTestScores');
     }
   }, []);
 
   // Sauvegarder dans localStorage à chaque changement
   useEffect(() => {
     try {
-      localStorage.setItem('typingTestScores', JSON.stringify(scores));
+      const dataToStore = {
+        scores,
+        savedAt: Date.now()
+      };
+      localStorage.setItem('typingTestScores', JSON.stringify(dataToStore));
     } catch (error) {
       console.error('Erreur lors de la sauvegarde des scores:', error);
     }
@@ -42,7 +79,7 @@ export const ScoresProvider = ({ children }) => {
   const addScore = (finalStats) => {
     const newScore = {
       id: Date.now(), // ID unique basé sur le timestamp
-      text: finalStats.input.substring(0, 50) + (finalStats.input.length > 50 ? "..." : ""),
+      text: finalStats.sampleText, // <-- ici, le texte d'origine
       time: finalStats.elapsed,
       wpm: parseFloat(finalStats.wpm),
       errors: finalStats.errors,

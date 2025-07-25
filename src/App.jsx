@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import TypingTestPage from "./pages/TypingTestPage";
 import HistoryPage from "./pages/HistoryPage";
+import DashboardPage from "./pages/DashboardPage";
 import { ScoresProvider } from "./contexts/ScoresContext";
 
 function App() {
@@ -17,6 +18,10 @@ function App() {
             <Routes>
               <Route 
                 path="/" 
+                element={<DashboardPage />} 
+              />
+              <Route 
+                path="/test" 
                 element={<TypingTestPage />} 
               />
               <Route 

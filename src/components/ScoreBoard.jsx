@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
 
-function ScoreBoard({ scores }) {
+function ScoreBoard({ scores, onReplay }) {
   const { t } = useTranslation();
 
   if (!scores || scores.length === 0) {
@@ -149,6 +149,17 @@ function ScoreBoard({ scores }) {
                 ></div>
               </div>
             </div>
+            {/* Bouton rejouer */}
+            {onReplay && (
+              <div className="mt-6 text-center">
+                <button
+                  onClick={() => onReplay(score)}
+                  className="px-5 py-2 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700 transition"
+                >
+                  {t('scoreboard.replay_test') || 'Rejouer ce test'}
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
