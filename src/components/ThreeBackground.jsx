@@ -1,4 +1,3 @@
-// src/components/ThreeBackground.jsx
 import React, { useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import {
